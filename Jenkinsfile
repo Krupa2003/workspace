@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')  // Add AWS credentials in Jenkins
-        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_ACCESS_KEY_ID = credentials('aws-terraform-credentials')  // Make sure this matches the credentials ID in Jenkins
+        AWS_SECRET_ACCESS_KEY = credentials('aws-terraform-credentials')
         TF_VAR_region = 'us-east-1' // Set your region here
     }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git url: 'https://github.com/Krupa2003/workspace', branch: 'main'
             }
         }
 
